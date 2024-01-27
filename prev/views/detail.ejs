@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Coffee Roulette</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <!-- <body style="display: flex;
+  justify-content: center;
+  align-items: center; flex-direction: column;"> -->
+  <body>
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4 mt-5">
+        <div class="row">
+          <div class="col-sm-12">
+            <table class="table table-hover">
+              <colgroup>
+                <col style="width: 20%" />
+                <col style="width: 80%" />
+              </colgroup>
+
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% user.histories.forEach((history, index) => { %>
+                <tr>
+                  <th scope="row"><%= index + 1 %></th>
+                  <td>
+                    <% const options = { weekday: 'long', year: 'numeric',
+                    month: 'long', day: 'numeric' }; const formattedDate = new
+                    Intl.DateTimeFormat('ko-KR', options).format(new
+                    Date(history.createdAt)); %> <%= formattedDate %>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-12">
+            <form method="post" target="/user">
+              <div
+                class="form-group d-flex align-items-end justify-content-end"
+              >
+                <span class="mb-3 me-2"> winRate: <%= winRate %> %</span>
+                <button
+                  type="button"
+                  class="btn btn-danger mb-3 me-2"
+                  onclick="location.href='/admin/user/delete/<%= user._id %>'"
+                >
+                  삭제하기
+                </button>
+                <button
+                  type="button"
+                  onclick="window.location.href='/user';"
+                  class="btn btn-warning mb-3"
+                >
+                  뒤로가기
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

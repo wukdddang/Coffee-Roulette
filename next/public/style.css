@@ -1,0 +1,128 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  font-family: "Pretendard";
+  font-weight: 600;
+  touch-action: manipulation;
+}
+
+#roulette-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 400px;
+}
+
+#roulette {
+  border: 2px solid black;
+  border-radius: 50%;
+}
+#participant-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* #roulette-container::after {
+  content: "◀";
+  right: -10vw;
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 9px;
+  transform: rotate(30deg);
+  background: url("./imgs/triangle.svg") center/contain no-repeat;
+} */
+
+[type="checkbox"].tech7 {
+  width: 20px;
+  height: 20px;
+}
+
+.spin-icon {
+  fill: #fff;
+}
+
+.target-modal-body {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.target-modal-body-background {
+  width: 400px;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.target-modal-body-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3); /* 흐림 정도 10px, 검은색(rgba(0, 0, 0, 0.3))의 그림자 */
+  padding: 10px 20px;
+  border-radius: 5px;
+  transform: translate(-50%, -50%);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.fire-border {
+  position: relative;
+  box-shadow: 0 0 10px 3px red; /* 기본 그림자 효과 */
+  animation: burning 1.5s infinite;
+}
+
+.fire-border::before {
+  animation: fireFrameBefore 1.5s infinite;
+}
+
+.fire-border::after {
+  animation: fireFrameAfter 1.5s infinite;
+}
+
+@keyframes burning {
+  0%,
+  100% {
+    box-shadow: 0 0 20px 3px red;
+  }
+  50% {
+    box-shadow: 0 0 25px 4px darkred;
+  }
+}
+
+@keyframes fireFrameBefore {
+  0%,
+  100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: red;
+  }
+}
+
+@keyframes fireFrameAfter {
+  0%,
+  100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: darkred;
+  }
+}
