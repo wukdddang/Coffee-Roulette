@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import "/public/style.css";
+import "./style.css";
 import Script from "next/script";
 import { GlobalProvider } from "@/context/GlobalProvider";
 import Header from "@/components/header/Header";
