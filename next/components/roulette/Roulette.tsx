@@ -7,12 +7,9 @@ import { VscTriangleLeft } from "react-icons/vsc";
 import { IoPeopleSharp } from "react-icons/io5";
 import { BsFire } from "react-icons/bs";
 import { FaRunning } from "react-icons/fa";
-import { congratulationImg } from "public/imgs";
 
-// import FetchClass from "@/service/fetch";
 import { getPastelColors, pastelColors } from "@/constants/colors";
-import { User, useGlobalState } from "@/context/GlobalProvider";
-// import NormalButton from "../buttons/NormalButton";
+import { User } from "@/context/GlobalProvider";
 import IconButton from "../buttons/IconButton";
 import useFetchUserList from "@/hooks/useFetchUserList";
 

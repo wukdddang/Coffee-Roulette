@@ -1,15 +1,9 @@
 "use client";
 
-// import UserList from "@/components/user-list/UserList";
-
 import Roulette from "@/components/roulette/Roulette";
-import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-// import useFetchUsers from "@/hooks/useFetchUserList";
 
 export default function Home() {
-  const router = useRouter();
-
   return (
     <AnimatePresence>
       <motion.div

@@ -1,9 +1,7 @@
 "use client";
-// import UserList from "@/components/user-list/UserList";
 
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-// import useFetchUsers from "@/hooks/useFetchUserList";
 import { useEffect, useState } from "react";
 import useFetchUser from "@/hooks/useFetchUser";
 import useFetchUserList from "@/hooks/useFetchUserList";
@@ -12,7 +10,7 @@ import { User } from "@/context/GlobalProvider";
 export default function Page() {
   const router = useRouter();
   const { users } = useFetchUser();
-  const { participants, setParticipants } = useFetchUserList();
+  const { participants } = useFetchUserList();
   const [selectedPeople, setSelectedPeople] = useState<User[]>(participants);
   const [selectAll, setSelectAll] = useState(true);
 
@@ -36,20 +34,9 @@ export default function Page() {
   };
 
   useEffect(() => {
-    setParticipants(selectedPeople);
-    console.log(selectedPeople);
-    console.log(users);
-  }, [selectedPeople, setParticipants, users]);
-
-  // users 데이터가 로드되면 selectedPeople 상태를 업데이트
-  useEffect(() => {
-    setSelectedPeople(participants);
-  }, [participants]);
-
-  useEffect(() => {
     setSelectedPeople(users);
     console.log(selectedPeople);
-  }, []);
+  }, [users]);
 
   return (
     <>
