@@ -1,7 +1,7 @@
 "use client";
 // import UserList from "@/components/user-list/UserList";
 
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FaArrowRightToBracket } from "react-icons/fa6";
@@ -14,35 +14,37 @@ export default function Page() {
   const router = useRouter();
   const { users } = useFetchUser();
   const nameInputRef = useRef<HTMLInputElement>(null);
-  const handleSubmit = async () => {
-    console.log(nameInputRef.current?.value);
-    const enteredName = nameInputRef.current?.value;
 
-    if (!enteredName) {
-      return;
-    }
+  // TODO: 서버액션 써서 이 로직 수정하기....
+  // const handleSubmit = async () => {
+  //   const enteredName = nameInputRef.current?.value;
 
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASEPATH}/api/user`,
-        {
-          method: "POST",
-          body: JSON.stringify({ name: enteredName }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+  //   if (!enteredName) {
+  //     return;
+  //   }
 
-      if (!response.ok) {
-        throw new Error("Request failed!");
-      }
+  //   try {
+  //     const response = await fetch(
+  //       `${process.env.NEXT_PUBLIC_BASEPATH}/api/user`,
+  //       {
+  //         method: "POST",
+  //         body: JSON.stringify({ name: enteredName }),
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
 
-      // 처리 로직 (예: 응답 데이터 처리, 페이지 리다이렉트 등)
-    } catch (error) {
-      console.error("Failed to send request:", error);
-    }
-  };
+  //     if (!response.ok) {
+  //       throw new Error("Request failed!");
+  //     }
+
+  //     // 처리 로직 (예: 응답 데이터 처리, 페이지 리다이렉트 등)
+  //     await router.push("/users");
+  //   } catch (error) {
+  //     console.error("Failed to send request:", error);
+  //   }
+  // };
 
   return (
     <>
@@ -158,7 +160,7 @@ export default function Page() {
             <div className="col-sm-12">
               <div>
                 <div className="tw-flex align-items-end justify-content-end tw-gap-2">
-                  <input
+                  {/* <input
                     ref={nameInputRef}
                     type="text"
                     name="name"
@@ -167,12 +169,12 @@ export default function Page() {
                     aria-describedby="emailHelp"
                   />
                   <button
-                    type="submit"
+                    type="button"
                     className="tw-text-[12px] sm:tw-text-[16px] tw-bg-blue-500 hover:tw-bg-blue-600 active:tw-bg-blue-600 tw-text-white tw-py-2 tw-px-3 tw-rounded-lg"
                     onClick={handleSubmit}
                   >
                     추가
-                  </button>
+                  </button> */}
                   <button
                     type="button"
                     onClick={() => {
