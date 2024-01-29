@@ -9,9 +9,12 @@ export default function useFetchUserList() {
 
   const handleFetchUserList = async () => {
     try {
+      console.log(process.env.NEXT_PUBLIC_BASEPATH);
+      // console.log(window.location.pathname);
       const baseUrl =
         typeof window !== "undefined" ? window.location.origin : "";
-      const url = `${baseUrl}/api/user/list`;
+      // console.log(baseUrl);
+      const url = `${baseUrl}/${process.env.NEXT_PUBLIC_BASEPATH}/api/user/list`;
 
       const options = { method: "GET" }; // 요청 메서드와 필요한 옵션
       const responseData = await fetchInstance.runFetch(url, options);

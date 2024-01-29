@@ -8,10 +8,41 @@ import { FaArrowRightToBracket } from "react-icons/fa6";
 
 import useFetchUser from "@/hooks/useFetchUser";
 import { imgs, 기본값 } from "public/imgs";
+import { useRef } from "react";
 
 export default function Page() {
   const router = useRouter();
   const { users } = useFetchUser();
+  const nameInputRef = useRef<HTMLInputElement>(null);
+  const handleSubmit = async () => {
+    console.log(nameInputRef.current?.value);
+    const enteredName = nameInputRef.current?.value;
+
+    if (!enteredName) {
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASEPATH}/api/user`,
+        {
+          method: "POST",
+          body: JSON.stringify({ name: enteredName }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Request failed!");
+      }
+
+      // 처리 로직 (예: 응답 데이터 처리, 페이지 리다이렉트 등)
+    } catch (error) {
+      console.error("Failed to send request:", error);
+    }
+  };
 
   return (
     <>
@@ -76,7 +107,7 @@ export default function Page() {
                           onClick={async () => {
                             console.log("plus");
                             await fetch(
-                              `/api/user/increase/weight/${user.name}`,
+                              `${process.env.NEXT_PUBLIC_BASEPATH}/api/user/increase/weight/${user.name}`,
                               {
                                 method: "GET",
                               }
@@ -93,9 +124,12 @@ export default function Page() {
                           className="tw-px-2 tw-py-1 sm:tw-px-4 sm:tw-py-2 tw-bg-orange-200 tw-rounded-lg sm:tw-ml-2 tw-shadow-lg"
                           onClick={() => {
                             console.log("minus");
-                            fetch(`/api/user/decrease/weight/${user.name}`, {
-                              method: "GET",
-                            }).then((res) => {
+                            fetch(
+                              `${process.env.NEXT_PUBLIC_BASEPATH}/api/user/decrease/weight/${user.name}`,
+                              {
+                                method: "GET",
+                              }
+                            ).then((res) => {
                               if (res.ok) {
                                 window.location.reload();
                               }
@@ -122,9 +156,10 @@ export default function Page() {
               </tbody>
             </table>
             <div className="col-sm-12">
-              <form method="post" target="/user">
+              <div>
                 <div className="tw-flex align-items-end justify-content-end tw-gap-2">
                   <input
+                    ref={nameInputRef}
                     type="text"
                     name="name"
                     className="tw-border tw-py-2"
@@ -134,6 +169,7 @@ export default function Page() {
                   <button
                     type="submit"
                     className="tw-text-[12px] sm:tw-text-[16px] tw-bg-blue-500 hover:tw-bg-blue-600 active:tw-bg-blue-600 tw-text-white tw-py-2 tw-px-3 tw-rounded-lg"
+                    onClick={handleSubmit}
                   >
                     추가
                   </button>
@@ -147,7 +183,7 @@ export default function Page() {
                     뒤로가기
                   </button>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
           <div className="sm:tw-col-span-2 tw-col-span-0" />

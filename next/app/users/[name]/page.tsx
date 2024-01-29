@@ -10,9 +10,9 @@ const page = ({ params }: any) => {
   const [histories, setHistories] = useState([]);
 
   const getUserInfo = async () => {
-    const res = await fetch(`/api/user/${params.name}`).then((res) =>
-      res.json()
-    );
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASEPATH}/api/user/${params.name}`
+    ).then((res) => res.json());
 
     setWinRate(res.winRate);
     setHistories(res.user.histories);

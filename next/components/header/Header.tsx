@@ -7,7 +7,7 @@ const Header = () => {
       tw-py-4 tw-px-8 tw-bg-gray-800 tw-text-white tw-shadow-lg"
     >
       <Link href="/" className="tw-text-[24px] tw-font-bold">
-        Coffee Roulette
+        Coffee Roullet!
       </Link>
       <Link
         href="/users"

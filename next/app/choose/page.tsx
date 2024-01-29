@@ -119,7 +119,7 @@ export default function Page() {
                               onClick={() => {
                                 console.log("plus");
                                 fetch(
-                                  `/api/user/increase/weight/${user.name}`,
+                                  `${process.env.NEXT_PUBLIC_BASEPATH}/api/user/increase/weight/${user.name}`,
                                   {
                                     method: "GET",
                                   }
@@ -137,7 +137,7 @@ export default function Page() {
                               onClick={() => {
                                 console.log("minus");
                                 fetch(
-                                  `/api/user/decrease/weight/${user.name}`,
+                                  `${process.env.NEXT_PUBLIC_BASEPATH}/api/user/decrease/weight/${user.name}`,
                                   {
                                     method: "GET",
                                   }

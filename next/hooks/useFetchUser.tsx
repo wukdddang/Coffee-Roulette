@@ -11,7 +11,9 @@ export default function useFetchUser() {
     try {
       const baseUrl =
         typeof window !== "undefined" ? window.location.origin : "";
-      const url = `${baseUrl}/api/user/list`;
+      // console.log(baseUrl);
+      const url = `${baseUrl}/${process.env.NEXT_PUBLIC_BASEPATH}/api/user/list`;
+
       const options = { method: "GET" }; // 요청 메서드와 필요한 옵션
       const responseData = await fetchInstance.runFetch(url, options);
       setUsers(responseData.users); // 응답 데이터 상태에 저장

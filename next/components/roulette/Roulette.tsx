@@ -49,22 +49,27 @@ export default function Roulette() {
     const targetModal = document.querySelector("#target-modal") as HTMLElement;
 
     if (mode === "hard") {
-      await fetch(`/api/user/increase/${winnerName}`).then((res) => {
+      await fetch(
+        `${process.env.NEXT_PUBLIC_BASEPATH}/api/user/increase/${winnerName}`
+      ).then((res) => {
         if (res.ok) {
           console.log("성공");
         } else {
           console.log("실패");
         }
       });
-      await fetch(`/api/user/increase/participation`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          participants,
-        }),
-      });
+      await fetch(
+        `${process.env.NEXT_PUBLIC_BASEPATH}/api/user/increase/participation`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            participants,
+          }),
+        }
+      );
     }
 
     const winnerHtml = document.querySelector(
@@ -73,7 +78,7 @@ export default function Roulette() {
 
     winnerHtml.innerHTML = "";
     winnerHtml.innerHTML = `
-      <img src="/imgs/congratulation.png" class="target-modal-body-background"/>
+      <img src="${process.env.NEXT_PUBLIC_BASEPATH}/imgs/congratulation.png" class="target-modal-body-background"/>
       <div class="target-modal-body-text font-weight-bold text-center">${winnerName}님! <br/> 커피 감사합니다! ☕</div>
     `;
 
