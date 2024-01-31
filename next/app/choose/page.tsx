@@ -10,7 +10,7 @@ import { User } from "@/context/GlobalProvider";
 export default function Page() {
   const router = useRouter();
   const { users } = useFetchUser();
-  const { participants } = useFetchUserList();
+  const { participants, setParticipants } = useFetchUserList();
   const [selectedPeople, setSelectedPeople] = useState<User[]>(participants);
   const [selectAll, setSelectAll] = useState(true);
 
@@ -37,6 +37,17 @@ export default function Page() {
     setSelectedPeople(users);
     console.log(selectedPeople);
   }, [users]);
+
+  useEffect(() => {
+    setParticipants(selectedPeople);
+    console.log(selectedPeople);
+    console.log(users);
+  }, [selectedPeople, setParticipants, users]);
+
+  // users 데이터가 로드되면 selectedPeople 상태를 업데이트
+  useEffect(() => {
+    setSelectedPeople(participants);
+  }, [participants]);
 
   return (
     <>
