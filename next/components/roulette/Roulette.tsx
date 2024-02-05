@@ -10,7 +10,7 @@ import { FaRunning } from "react-icons/fa";
 
 import { getPastelColors, pastelColors } from "@/constants/colors";
 import { User } from "@/context/GlobalProvider";
-import IconButton from "../buttons/IconButton";
+import IconButton from "../Buttons/IconButton";
 import useFetchUserList from "@/hooks/useFetchUserList";
 
 export default function Roulette() {

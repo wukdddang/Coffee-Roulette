@@ -1,6 +1,6 @@
 "use client";
 
-import Roulette from "@/components/roulette/Roulette";
+import Roulette from "@/components/Roulette/Roulette";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {

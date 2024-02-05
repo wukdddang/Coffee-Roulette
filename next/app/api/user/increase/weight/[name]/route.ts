@@ -17,6 +17,7 @@ export async function GET(
 
   try {
     const user = await User.findOne({ name: params.name });
+    console.log(user);
     user.weight += 0.1;
 
     await user.save();

@@ -108,16 +108,17 @@ export default function Page() {
                           className="tw-px-2 tw-py-1 sm:tw-px-4 sm:tw-py-2 tw-ml-[1px] tw-bg-cyan-200 tw-rounded-lg sm:tw-ml-8 tw-shadow-lg"
                           onClick={async () => {
                             console.log("plus");
-                            await fetch(
-                              `${process.env.NEXT_PUBLIC_BASEPATH}/api/user/increase/weight/${user.name}`,
-                              {
-                                method: "GET",
-                              }
-                            ).then((res) => {
-                              if (res.ok) {
-                                window.location.reload();
-                              }
-                            });
+                            alert("기능 수정중입니다...");
+                            // await fetch(
+                            //   `${process.env.NEXT_PUBLIC_BASEPATH}/api/user/increase/weight/${user.name}`,
+                            //   {
+                            //     method: "GET",
+                            //   }
+                            // ).then((res) => {
+                            //   if (res.ok) {
+                            //     window.location.reload();
+                            //   }
+                            // });
                           }}
                         >
                           +
@@ -126,16 +127,17 @@ export default function Page() {
                           className="tw-px-2 tw-py-1 sm:tw-px-4 sm:tw-py-2 tw-bg-orange-200 tw-rounded-lg sm:tw-ml-2 tw-shadow-lg"
                           onClick={() => {
                             console.log("minus");
-                            fetch(
-                              `${process.env.NEXT_PUBLIC_BASEPATH}/api/user/decrease/weight/${user.name}`,
-                              {
-                                method: "GET",
-                              }
-                            ).then((res) => {
-                              if (res.ok) {
-                                window.location.reload();
-                              }
-                            });
+                            alert("기능 수정중입니다...");
+                            // fetch(
+                            //   `${process.env.NEXT_PUBLIC_BASEPATH}/api/user/decrease/weight/${user.name}`,
+                            //   {
+                            //     method: "GET",
+                            //   }
+                            // ).then((res) => {
+                            //   if (res.ok) {
+                            //     window.location.reload();
+                            //   }
+                            // });
                           }}
                         >
                           -
