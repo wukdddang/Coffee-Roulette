@@ -7,7 +7,12 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// `/coffee` 경로에 대한 라우터 인스턴스 생성
+const coffeeRouter = express.Router();
+
 app.set("view engine", "ejs");
+// 애플리케이션에 `/coffee` 라우터 미들웨어 적용
+app.use("/coffee", coffeeRouter);
 
 mongoose
   .connect(
@@ -21,9 +26,9 @@ mongoose
     console.log(err);
   });
 
-app.use("/public", express.static("public"));
+coffeeRouter.use("/public", express.static("public"));
 
-app.get("/", (req, res) => {
+coffeeRouter.get("/", (req, res) => {
   res.render("index");
 });
 
@@ -32,7 +37,7 @@ app.get("/", (req, res) => {
  * times 필드를 기준으로 내림차순 정렬합니다.
  * @returns {Array} users
  */
-app.get("/user/list", async (req, res) => {
+coffeeRouter.get("/user/list", async (req, res) => {
   try {
     // 최근 기록 3개를 가져옵니다.
     const latestHistory = await History.find().sort({ createdAt: -1 }).limit(3);
@@ -80,7 +85,7 @@ app.get("/user/list", async (req, res) => {
   }
 });
 
-app.get("/user", async (req, res) => {
+coffeeRouter.get("/user", async (req, res) => {
   const users = await User.find();
 
   // users.times 기준으로 내림차순 정렬
@@ -94,7 +99,7 @@ app.get("/user", async (req, res) => {
  * @param {string} name
  * @returns redirect to /user
  */
-app.post("/user", (req, res) => {
+coffeeRouter.post("/user", (req, res) => {
   const name = req.body.name;
 
   const user = new User({
@@ -111,7 +116,7 @@ app.post("/user", (req, res) => {
  * @param {string} id
  * @returns {Object} user
  */
-app.get("/user/:id", async (req, res) => {
+coffeeRouter.get("/user/:id", async (req, res) => {
   try {
     const id = req.params.id;
 
@@ -134,7 +139,7 @@ app.get("/user/:id", async (req, res) => {
  * @param {string} id
  * @returns redirect to /user
  */
-app.get("/user/delete/:id", async (req, res) => {
+coffeeRouter.get("/user/delete/:id", async (req, res) => {
   const id = req.params.id;
 
   await User.findByIdAndDelete(id);
@@ -142,7 +147,7 @@ app.get("/user/delete/:id", async (req, res) => {
   res.redirect("/user");
 });
 
-app.get("/user/increase/:name", async (req, res) => {
+coffeeRouter.get("/user/increase/:name", async (req, res) => {
   const name = req.params.name;
 
   const user = await User.findOne({ name: name });
@@ -161,7 +166,7 @@ app.get("/user/increase/:name", async (req, res) => {
   return res.json({ success: true });
 });
 
-app.get("/user/increase/weight/:name", async (req, res) => {
+coffeeRouter.get("/user/increase/weight/:name", async (req, res) => {
   try {
     const name = req.params.name;
 
@@ -178,7 +183,7 @@ app.get("/user/increase/weight/:name", async (req, res) => {
   }
 });
 
-app.get("/user/decrease/weight/:name", async (req, res) => {
+coffeeRouter.get("/user/decrease/weight/:name", async (req, res) => {
   try {
     const name = req.params.name;
 
@@ -195,7 +200,7 @@ app.get("/user/decrease/weight/:name", async (req, res) => {
   }
 });
 
-app.post("/user/increase/participation", async (req, res) => {
+coffeeRouter.post("/user/increase/participation", async (req, res) => {
   try {
     const { participants } = req.body; // 요청 본문에서 참가자 목록 추출
 
@@ -221,7 +226,7 @@ app.post("/user/increase/participation", async (req, res) => {
 });
 
 // clear all users times and histories
-app.get("/admin/user/clear", async (req, res) => {
+coffeeRouter.get("/admin/user/clear", async (req, res) => {
   const users = await User.find();
 
   users.forEach(async (user) => {
@@ -235,7 +240,7 @@ app.get("/admin/user/clear", async (req, res) => {
   res.redirect("/user");
 });
 
-app.get("/admin/user/delete/:id", async (req, res) => {
+coffeeRouter.get("/admin/user/delete/:id", async (req, res) => {
   try {
     const id = req.params.id;
 

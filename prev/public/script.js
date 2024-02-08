@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tech_7_member_Weights = [];
   const tech_7_member_profileImg = [];
 
-  const res = await fetch("/user/list");
+  const res = await fetch("/coffee/user/list");
 
   const registeredUserArray = await res.json();
 
@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <th scope="row"><input type="checkbox" id="${name}" class="tech7" /></th>
           <td>
             <label for="${name}">
-              <img src="/public/imgs/${
+              <img src="/coffee/public/imgs/${
                 tech_7_member_profileImg[idx] ? name : "default-user"
               }.png" width="20px" height="20px"/>
               <span>${name}</span>
@@ -327,8 +327,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 당첨된 유저를 표시하는 코드 (예: 알림, DOM 요소 변경 등)
     // window.alert(`당첨자: ${winnerName}`);
     if (!isPracticeMode) {
-      await fetch(`/user/increase/${winnerName}`);
-      await fetch(`/user/increase/participation`, {
+      await fetch(`/coffee/user/increase/${winnerName}`);
+      await fetch(`/coffee/user/increase/participation`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     winnerHtml.innerHTML = "";
     winnerHtml.innerHTML = `
-      <img src="/public/imgs/congratulation.png" class="target-modal-body-background"/>
+      <img src="/coffee/public/imgs/congratulation.png" class="target-modal-body-background"/>
       <div class="target-modal-body-text font-weight-bold text-center">${winnerName}님! <br/> 커피 감사합니다! ☕</div>
     `;
 
@@ -420,7 +420,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelectorAll(".plus-permanently").forEach((button) => {
       button.addEventListener("click", function () {
         const name = this.getAttribute("data-name");
-        fetch(`/user/increase/weight/${name}`, { method: "GET" }).then(
+        fetch(`/coffee/user/increase/weight/${name}`, { method: "GET" }).then(
           (response) => window.location.reload()
         );
       });
@@ -429,7 +429,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelectorAll(".minus-permanently").forEach((button) => {
       button.addEventListener("click", function () {
         const name = this.getAttribute("data-name");
-        fetch(`/user/decrease/weight/${name}`, { method: "GET" }).then(
+        fetch(`/coffee/user/decrease/weight/${name}`, { method: "GET" }).then(
           (response) => window.location.reload()
         );
       });
