@@ -8,6 +8,9 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "styles")],
   },
   basePath: process.env.NEXT_PUBLIC_BASEPATH,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;

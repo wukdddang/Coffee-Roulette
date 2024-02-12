@@ -10,7 +10,7 @@ const Header = () => {
         Lumir Coffee Roullet
       </Link>
       <Link
-        href="/users"
+        href="/good"
         className="tw-py-2 tw-px-6 tw-bg-yellow-400 active:tw-bg-yellow-500 hover:tw-bg-yellow-500 tw-rounded-lg"
       >
         명예의 전당

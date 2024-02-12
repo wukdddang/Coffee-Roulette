@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectMongoDB, disconnectMongoDB } from "@/lib/mongodb";
 import { User } from "@/models/user";
 import console from "console";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
 export async function GET() {
   await connectMongoDB();
@@ -11,6 +11,8 @@ export async function GET() {
 
     return NextResponse.json({ users });
   } catch (error) {
+    console.error(error);
+    return NextResponse.json({ success: false });
   } finally {
     await disconnectMongoDB();
   }

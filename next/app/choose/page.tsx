@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 import useFetchUser from "@/hooks/useFetchUser";
 import useFetchUserList from "@/hooks/useFetchUserList";
 import { User } from "@/context/GlobalProvider";
-import { revalidatePath, revalidateTag } from "next/cache";
+// import { revalidatePath, revalidateTag } from "next/cache";
+
+export const revalidate = 0;
 
 export default function Page() {
   const router = useRouter();
@@ -72,7 +74,7 @@ export default function Page() {
                 <col style={{ width: "10%" }} />
                 <col style={{ width: "10%" }} />
                 <col style={{ width: "10%" }} />
-                <col style={{ width: "20%" }} />
+                {/* <col style={{ width: "20%" }} /> */}
               </colgroup>
 
               <thead>
@@ -80,7 +82,7 @@ export default function Page() {
                   <th>참여</th>
                   <th>이름</th>
                   <th>가중치</th>
-                  <th>비율 조절</th>
+                  {/* <th>비율 조절</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -110,7 +112,7 @@ export default function Page() {
                       <td className="tw-text-center">
                         {user.weight.toFixed(1)}
                       </td>
-                      <td>
+                      {/* <td>
                         <div className="tw-flex tw-items-center tw-justify-center">
                           <span className="tw-flex tw-ml-2 tw-text-[12px] sm:tw-text-[16px]">
                             <button
@@ -159,7 +161,7 @@ export default function Page() {
                             </button>
                           </span>
                         </div>
-                      </td>
+                      </td> */}
                     </tr>
                   );
                 })}

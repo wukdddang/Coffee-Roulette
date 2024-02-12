@@ -13,11 +13,11 @@ export async function GET(
   }
 ) {
   await connectMongoDB();
-  console.log(params);
+  // console.log(params);
 
   try {
     const user = await User.findOne({ name: params.name });
-    console.log(user);
+    // console.log(user);
     user.weight += 0.1;
 
     await user.save();
