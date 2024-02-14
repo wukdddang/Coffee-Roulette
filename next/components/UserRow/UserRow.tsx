@@ -51,7 +51,7 @@ const UserRow = ({ user }: UserRowProps) => {
         // debouncedWeight 대신 weight를 직접 비교
         updateWeightOnServer(weight); // debouncedWeight 대신 weight를 사용
       }
-    }, 300); // 디바운싱 시간 0.3초 설정
+    }, 100); // 디바운싱 시간 0.3초 설정
 
     return () => {
       clearTimeout(handler);
